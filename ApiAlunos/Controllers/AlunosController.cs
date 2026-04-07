@@ -41,6 +41,19 @@ namespace ApiAlunos.Controllers
 
             return Ok();
         }
+        [HttpDelete]
+
+        public IActionResult RemoverAluno(int id)
+        {
+            // Carregar os dados do arquivo para a memória 
+            List<Aluno> listaAlunos = PegarDados();
+
+            // Criar nova lista sem o aluno com o id informado
+            SalvarDados(listaAlunos.Where(a => a.Id != id).ToList());
+
+
+            return Ok();
+        }
 
         private static void SalvarDados(List<Aluno> listaAlunos)
         {
